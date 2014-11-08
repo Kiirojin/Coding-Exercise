@@ -1,4 +1,4 @@
-The two files to run are run.py and runFaster.py.
+The two files to run are run.py and runWithoutPolling.py.
 run.py should work in any os with Python installed. This program is expensive because it continually polls the folder for new files.
 
 runWithoutPolling.py , Leverages notifications instead of polling. Is much less expensive than run.py
