@@ -1,7 +1,8 @@
 The two files to run are run.py and runFaster.py.
-run.py should work in any os with Python installed. However it is slow because it continually polls the folder for new files.
-runFaster.py is much faster than run.py (parsing in a few ms instead of a few hundred ms), leveraging notifications instead of polling.
-However, runFaster.py is specific to Windows and furthermore needs pywin32 to be installed.
+run.py should work in any os with Python installed. This program is expensive because it continually polls the folder for new files.
+
+runWithoutPolling.py , Leverages notifications instead of polling. Is much less expensive than run.py
+However, runWithoutPolling.py is specific to Windows and furthermore needs pywin32 to be installed.
 http://sourceforge.net/projects/pywin32/files/pywin32/
 
 It is assumed that the current working directory is the one to be monitored, but this can be easily changed.
@@ -18,3 +19,7 @@ if(os.path.isdir(file)):
     continue;
 
 It is unclear why this seems to fix the problem. Debugging inconclusive, further testing needed.
+
+UPDATE: This seems to actually be because the program seems to be trying to access the file so fast that an error is thrown.
+The if statement simply just wastes time, giving the file some breathing room after it is created. We can (and should) replace
+it with something like time.sleep(.001).
